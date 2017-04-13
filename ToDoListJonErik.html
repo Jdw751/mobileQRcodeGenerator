@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>To Do List</title>
+</head>
+<script src="ToDoListem.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+---
+<!-- see if a button works -->
+<script> 
+function tester() {
+
+    alert("test");
+}
+</script>
+
+
+<body>
+
+
+<div class="jumbotron">
+<h1>To Do List</h1>
+</div>
+<div class="container">
+
+
+</div>
+<p>----</p>
+<div class="container">
+Enter List Item:
+<input type="text" name="listID[]" id="listItem" value="">
+
+
+<input type="button" class="btn btn-primary" value="Add to List" onclick="addToList(document.getElementById('listItem').value);displayMyList()"><br>
+<!-- <input type="button" class="btn btn-primary" value="Add to List" onclick="tester()"><br> -->
+
+</div>
+<p>------</p>
+
+<b>TO DO LIST:</b>
+<div class="container">
+<div class="well">
+
+<ol type="1" id="list">
+  
+  
+</ol>
+
+
+</div>
+</div>
+
+</body>
+
+
+</html>
