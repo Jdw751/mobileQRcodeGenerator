@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="x-ua-compatible" content="IE=Edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta name="format-detection" content="telephone=no">
+	<title>Barcode Generator</title>
+
+	<link href="/query/common/css/roboto.css" rel="stylesheet">
+	<link href="/query/common/lib/material-design-icons/material-icons.css" rel="stylesheet">
+	<link href="barcode.css" rel="stylesheet">
+
+	<script src="/query/common/lib/polyfill.js"></script>
+	<script src="/query/common/lib/angular/angular.js"></script>
+	<script src="/query/common/lib/angular-animate/angular-animate.js"></script>
+	<script src="/query/common/lib/angular-sanitize/angular-sanitize.js"></script>
+	<script src="/query/common/lib/moment/moment.js"></script>
+	<script src="/query/common/lib/moment-timezone/moment-timezone-with-data.js"></script>
+	<script src="/query/common/validation/validation.js"></script>
+	<script src="barcode.js"></script>
+</head>
+<body ng-app="barcode" ng-controller="BarcodeController">
+	<header>
+		Barcode Generator
+		<div class="buttons">
+			<i class="material-icons" ng-click="clear()" title="Clear">delete</i>
+			<i class="material-icons" ng-click="print()" title="Print">print</i>
+		</div>
+	</header>
+
+	<div class="passport">
+		<div class="bio">			
+			<div class="row">
+				<label class="col col-25">
+					<i class="material-icons">looks_one</i>
+					Document no.
+					<input required ng-model="form.docNumber" name="docNumber" type="text" maxlength="{{form.docType.docNumberLength || 9}}">
+				</label>
+				<label class="col">
+					<i class="material-icons">people</i>
+					Surname (last)
+					<input required ng-model="form.lastName" name="lastName" type="text" maxlength="39">
+				</label>
+				<label class="col col-25">
+					<i class="material-icons">cake</i>
+					Birth date
+					<input required ng-model="form.birthDate" name="birthDate" type="text" placeholder="MMDDYYYY" date>
+				</label>
+			</div>
+
+			<div class="row">
+				<label class="col col-25">
+					<i class="material-icons">looks_two</i>
+					{{form.docType.optNumberLabel || 'Optional no.'}}
+					<input ng-model="form.optNumber" name="optNumber" type="text" maxlength="{{form.docType.optNumberLength || 14}}">
+				</label>
+				<label class="col">
+					<i class="material-icons">person</i>
+					Given names (first)
+					<input required ng-model="form.firstName" name="firstName" type="text" maxlength="39">
+				</label>
+				<label class="col col-25">
+					<i class="material-icons">access_time</i>
+					Expiration date
+					<input required ng-model="form.expireDate" name="expireDate" type="text" placeholder="MMDDYYYY" date>
+				</label>
+			</div>
+
+			<div class="row">
+				<label class="col col-25">
+					<i class="material-icons">directions_walk</i>
+					Sex
+					<select required ng-model="form.sex" name="sex">
+						<option value="F">Female</option>
+						<option value="M">Male</option>
+						<option value="<">Unspecified</option>
+					</select>
+				</label>
+				<label class="col">
+					<i class="material-icons">flag</i>
+					Nationality
+					<select required ng-model="form.nationality" name="nationality" ng-options="country.code as country.name + ' (' + country.code + ')' for country in countries | orderBy: ['name']" ng-show="!form.docType.hideNationality"></select>
+					<!-- Alien Registration Card has no nationality -->
+					<input readonly type="text" value="NONE" class="ng-hide" ng-show="form.docType.hideNationality">
+				</label>
+				<label class="col col-25">
+					<i class="material-icons">language</i>
+					Issue country
+					<select required ng-model="form.issueCountry" name="issueCountry" ng-options="country.code as country.name + ' (' + country.code + ')'  for country in countries | orderBy: ['name']"></select>
+				</label>
+			</div>
+
+			<div class="row no-print ng-hide" ng-show="form.docType.extraNumberLength">
+				<label class="col">
+					<i class="material-icons">looks_3</i>
+					Extra no. (not printed, included in barcode only)
+					<input ng-model="form.extraNumber" name="extraNumber" type="text" maxlength="{{form.docType.extraNumberLength}}">
+				</label>
+			</div>
+		</div>
+
+		<div class="barcode" ng-model="barcode" contenteditable></div>
+	</div>
+</body>
+</html>

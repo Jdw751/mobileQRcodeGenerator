@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US" >
+<style type="text/css">
+	
+		button {
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+		button:disabled{
+			color: grey;
+
+		}
+		.divider
+		{
+		    border-right: 1px solid Gainsboro;
+		}	
+		
+		.text-center {
+		   text-align:center;  
+		}
+		
+
+	
+		
+</style>
+
+<head>
+	<title>QR Code writer</title>
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</head>
+<body ng-app="mymodal">
+
+<script>
+var mymodal = angular.module('mymodal', []);
+
+mymodal.controller('QRCtrl', function ($scope) {
+    $scope.showModal = false;
+    $scope.toggleModal = function(){
+        $scope.showModal = !$scope.showModal;
+    };
+  });
+
+mymodal.directive('modal', function () {
+    return {
+      template: '<div class="modal fade">' + 
+          '<div class="modal-dialog">' + 
+            '<div class="modal-content">' + 
+              '<div class="modal-header">' + 
+                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
+                '<h4 class="modal-title">{{ title }}</h4>' + 
+              '</div>' + 
+              '<div class="modal-body" ng-transclude></div>' + 
+            '</div>' + 
+          '</div>' + 
+        '</div>',
+      restrict: 'E',
+      transclude: true,
+      replace:true,
+      scope:true,
+      link: function postLink(scope, element, attrs) {
+        scope.title = attrs.title;
+
+        scope.$watch(attrs.visible, function(value){
+          if(value == true)
+            $(element).modal('show');
+          else
+            $(element).modal('hide');
+        });
+
+        $(element).on('shown.bs.modal', function(){
+          scope.$apply(function(){
+            scope.$parent[attrs.visible] = true;
+          });
+        });
+
+        $(element).on('hidden.bs.modal', function(){
+          scope.$apply(function(){
+            scope.$parent[attrs.visible] = false;
+          });
+        });
+      }
+    };
+  });
+</script>
+	<br>
+	
+	<div class="container-fluid" ng-controller="QRCtrl">
+
+	<modal title="QR CODE" visible="showModal">
+    QR CODE HERE
+  </modal>
+
+
+
+		<div class="well">
+			<div class="row text-center">
+			  <div class="col-xs-12">
+			  	<textarea ng-model="QRText" style="width:50%; height: 10em"></textarea>
+			  </div>
+			</div>
+			<div class="row text-center">
+			  <div class="col-xs-6">X
+			  	<input class="text-center" type="number" min="1" style="width: 4em" >
+			  </div>
+			  <div class="col-xs-6">Y
+			  	<input class="text-center" type="number" min="1" style="width: 4em" >
+			  </div>
+			</div>		
+			<br>
+			<div class="row text-center">
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="imageRotation">Normal</label>			
+			  </div>
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="imageRotation">90 CCW</label>
+			  </div>
+			</div>
+			<div class="row text-center">
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="imageRotation">90 CW</label>			
+			  </div>
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="imageRotation">180</label>
+			  </div>
+			</div>
+
+			<br>
+			<br>
+
+			<div class="row text-center">
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="fontRendering">Anti-Aliased</label>			
+			  </div>
+			  <div class="col-xs-6">
+			  	<label class="radio-inline"><input type="radio" name="fontRendering">Monochrome</label>
+			  </div>
+			</div>
+
+			<br>
+			<br>
+
+			<div class="row text-center">
+			  
+			  	<button id="render" ng-click="toggleModal()" class="btn btn-default">Show Barcode</button>			
+			
+			  	
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>
