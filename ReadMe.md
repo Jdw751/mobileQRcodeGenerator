@@ -1,4 +1,4 @@
-# TO DO LIST
+# Mobile QR code Generator
 
 ##Project Source: https://github.com/Jdw751/mobileQRcodeGenerator.git
 
