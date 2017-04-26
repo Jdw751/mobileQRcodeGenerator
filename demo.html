@@ -60,6 +60,17 @@ var Module = {
 <script type="text/javascript" src="lib/filesaver.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+
+
+	 $("#render").click(function(){
+        $("hideBarcode").hide();
+        $("showBarcode").show();
+    });
+    $("#backButton").click(function(){
+        $("showBarcode").hide();
+        $("hideBarcode").show();
+    });
+
 	var lastSymbol;
 	try {
 		lastSymbol = localStorage.getItem('bwipjsLastSymbol');
@@ -232,6 +243,7 @@ function saveCanvas(type, ext) {
 </script>
 </head><body>
 <br>
+<hideBarcode>
 <div id="params">
 <table border=0 cellpading=0 cellspacing=0><tr>
 <td>
@@ -246,13 +258,10 @@ function saveCanvas(type, ext) {
 	<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
 	<tr><td><td>
-		<a class="saveas" href="javascript:saveCanvas('image/png','.png')">Save As PNG</a>
-		&nbsp;&nbsp;
-		<a class="saveas" href="javascript:saveCanvas('image/jpeg','.jpg')">Save As JPEG</a>
-		&nbsp;&nbsp;
-	</table>
+		
+	<!-- </table> -->
 <td style="padding-left:10mm">
-	<table border=0 cellpading=0 cellspacing=5>
+	<!-- <table border=0 cellpading=0 cellspacing=5> -->
 	<tr><th>Scale X,Y:<td>
 		<input type="text" id="scaleX" value=2>
 		<input type="text" id="scaleY" value=2>
@@ -275,10 +284,17 @@ function saveCanvas(type, ext) {
 <tr><td><br>
 </table>
 </div>
+
+</hideBarcode>
+<showBarcode>
 <div id="content">
 <canvas id="canvas" width=1 height=1 style="border:1px solid #fff;visibility:hidden"></canvas>
 <div id="proof" style="position:relative;border:1px solid #fff"></div>
+
 <div id="output" style="white-space:pre"></div>
+
+<button id="backButton">Back</button>
+</showBarcode>
 </div>
 </body>
 </html>
