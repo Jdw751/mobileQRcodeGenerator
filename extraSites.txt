@@ -1,0 +1,5 @@
+http://codewithchris.com/how-to-make-iphone-apps-with-no-programming-experience/
+
+https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/BuildABasicUI.html#//apple_ref/doc/uid/TP40015214-CH5-SW1
+
+https://designcode.io/xcode
