@@ -258,7 +258,7 @@ function saveCanvas(type, ext) {
 			<option value="qrcode">QR Code</option>
 			
 			</select>
-	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 STLMEXTN {{gallery.flightNumber}} 094C003A0005 155>318  O     TN              2900621793042390    TN 0253826275</textarea>
+	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 {{gallery.depaturePort}}MEX{{gallery.carrierCode}} {{gallery.flightNumber}} 094C003A0005 155>318  O     {{gallery.carrierCode}}              2900621793042390    {{gallery.carrierCode}} 0253826275</textarea>
 
 	<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
@@ -289,8 +289,10 @@ function saveCanvas(type, ext) {
 <tr><td><br>
 </table>
 </div>
-M1SMITH/JOHN          E111111 STLMEXTN {{gallery.flightNumber}} 094C003A0005 155>318  O     TN              2900621793042390    TN 0253826275
-<p>Name : <input type="text" ng-model="gallery.flightNumber"></p>
+
+<p>Flight Number : <input type="text" ng-model="gallery.flightNumber"></p>
+<p>Carrier  : <input type="text" ng-model="gallery.carrierCode"></p>
+<p>Depature Port : <input type="text" ng-model="gallery.depaturePort"></p>
 </hideBarcode>
 <showBarcode>
 <div id="content">
