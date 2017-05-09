@@ -81,7 +81,7 @@ $(document).ready(function() {
 		.change(function(ev) {
 			var desc = symdesc[$(this).val()];
 			if (desc) {
-				$('#symtext').val(desc.text);
+				$('#symtext').val();
 				$('#symopts').val(desc.opts);
 
 				$('#proof-img').css('visibility', 'hidden');
@@ -258,7 +258,7 @@ function saveCanvas(type, ext) {
 			<option value="qrcode">QR Code</option>
 			
 			</select>
-	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 STLMEXTN 8292 094C003A0005 155>318  O     TN              2900621793042390    TN 0253826275</textarea>
+	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 STLMEXTN {{gallery.flightNumber}} 094C003A0005 155>318  O     TN              2900621793042390    TN 0253826275</textarea>
 
 	<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
