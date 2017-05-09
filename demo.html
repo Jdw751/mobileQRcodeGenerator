@@ -61,14 +61,21 @@ var Module = {
 <script type="text/javascript">
 $(document).ready(function() {
 
+	$("optionsView").hide();
+
 
 	 $("#render").click(function(){
         $("hideBarcode").hide();
         $("showBarcode").show();
+        $("optionsView").show();
     });
     $("#backButton").click(function(){
         $("showBarcode").hide();
         $("hideBarcode").show();
+        $("optionsView").hide();
+    });
+    $("#optionsButton").click(function(){
+        $("optionsView").hide();
     });
 
 	var lastSymbol;
@@ -259,11 +266,13 @@ function saveCanvas(type, ext) {
 			
 			</select>
 	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 {{gallery.depaturePort}}MEX{{gallery.carrierCode}} {{gallery.flightNumber}} 094C003A0005 155>318  O     {{gallery.carrierCode}}              2900621793042390    {{gallery.carrierCode}} 0253826275</textarea>
-
+</hideBarcode>
+<optionsView>
 	<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
 	<tr><td><td>
-		
+</optionsView>
+<hideBarcode>		
 	<!-- </table> -->
 <td style="padding-left:10mm">
 	<!-- <table border=0 cellpading=0 cellspacing=5> -->
@@ -284,10 +293,13 @@ function saveCanvas(type, ext) {
 			id="fontAnti" checked>Anti-Aliased</label>
 		<label for="fontMono"><input type="radio" name="font" value="M"
 			id="fontMono">Monochrome</label>
+	
+	<button id="optionsButton">Options</button>
 	<tr><td><td><button id="render">Show Barcode</button>
 	</table>
 <tr><td><br>
 </table>
+
 </div>
 
 <p>Flight Number : <input type="text" ng-model="gallery.flightNumber"></p>
