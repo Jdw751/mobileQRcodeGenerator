@@ -61,6 +61,8 @@ var Module = {
 <script type="text/javascript">
 $(document).ready(function() {
 
+	
+	$("showBarcode").hide();
 	$("optionsView").hide();
 
 
@@ -72,9 +74,12 @@ $(document).ready(function() {
     $("#backButton").click(function(){
         $("showBarcode").hide();
         $("hideBarcode").show();
-        $("optionsView").hide();
+        
     });
-    $("#optionsButton").click(function(){
+    $("#optionsOpenButton").click(function(){
+        $("optionsView").show();
+    });
+    $("#optionsCloseButton").click(function(){
         $("optionsView").hide();
     });
 
@@ -268,10 +273,13 @@ function saveCanvas(type, ext) {
 	<tr><th>Bar Text:<td><textarea id="symtext" type="text" style="width:73ex; height: 5em">M1SMITH/JOHN          E111111 {{gallery.depaturePort}}MEX{{gallery.carrierCode}} {{gallery.flightNumber}} 094C003A0005 155>318  O     {{gallery.carrierCode}}              2900621793042390    {{gallery.carrierCode}} 0253826275</textarea>
 </hideBarcode>
 <optionsView>
-	<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
+<table >
+<tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
+</td></th></tr></table>
+</optionsView>
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
 	<tr><td><td>
-</optionsView>
+
 <hideBarcode>		
 	<!-- </table> -->
 <td style="padding-left:10mm">
@@ -294,7 +302,7 @@ function saveCanvas(type, ext) {
 		<label for="fontMono"><input type="radio" name="font" value="M"
 			id="fontMono">Monochrome</label>
 	
-	<button id="optionsButton">Options</button>
+	<button id="optionsOpenButton">Options</button>
 	<tr><td><td><button id="render">Show Barcode</button>
 	</table>
 <tr><td><br>
@@ -307,6 +315,11 @@ function saveCanvas(type, ext) {
 <p>Depature Port : <input type="text" ng-model="gallery.depaturePort"></p>
 </hideBarcode>
 <showBarcode>
+<br>
+<p>Flight Number : {{gallery.flightNumber}}</p>
+<p>Carrier  : {{gallery.carrierCode}}</p>
+<p>Depature Port : {{gallery.depaturePort}}</p>
+<br>
 <div id="content">
 <canvas id="canvas" width=1 height=1 style="border:1px solid #fff;visibility:hidden"></canvas>
 <div id="proof" style="position:relative;border:1px solid #fff"></div>
