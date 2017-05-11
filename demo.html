@@ -77,11 +77,9 @@ $(document).ready(function() {
         
     });
     $("#optionsOpenButton").click(function(){
-        $("optionsView").show();
+        $("optionsView").toggle();
     });
-    $("#optionsCloseButton").click(function(){
-        $("optionsView").hide();
-    });
+    
 
 	var lastSymbol;
 	try {
@@ -275,18 +273,20 @@ function saveCanvas(type, ext) {
 <optionsView>
 <table >
 <tr><th>Alt Text:<td><input id="symaltx" type="text" style="width:63ex">
-</td></th></tr></table>
-</optionsView>
+</td></th>
+<!-- </optionsView> -->
 	<tr><th>Options:<td><input id="symopts" type="text" style="width:63ex">
+<!-- </optionsView> -->
 	<tr><td><td>
-
+</table>
 <hideBarcode>		
-	<!-- </table> -->
-<td style="padding-left:10mm">
+	
+<!-- <td style="padding-left:10mm"> -->
 	<!-- <table border=0 cellpading=0 cellspacing=5> -->
 	<tr><th>Scale X,Y:<td>
 		<input type="text" id="scaleX" value=2>
 		<input type="text" id="scaleY" value=2>
+</optionsView>
 	<tr><th>Image Rotation:<td>
 		<label for="rotN"><input type="radio" name="rot" value="N"
 			id="rotN" checked>Normal</label>
@@ -302,8 +302,9 @@ function saveCanvas(type, ext) {
 		<label for="fontMono"><input type="radio" name="font" value="M"
 			id="fontMono">Monochrome</label>
 	
-	<button id="optionsOpenButton">Options</button>
-	<tr><td><td><button id="render">Show Barcode</button>
+	
+	
+		<tr><td><td><button id="render">Show Barcode</button> <button id="optionsOpenButton">Options</button>
 	</table>
 <tr><td><br>
 </table>
